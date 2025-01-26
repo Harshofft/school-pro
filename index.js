@@ -54,13 +54,15 @@ app.get("/health", (req,res)=>{
  })
 
 //*********to find the student to des********* */
- app.get("/students/:rollno"),(req,res)=>{
-    const {Rollno} = req.params;
+ app.get("/students/:rollno",(req,res)=>{
+    const {rollno} = req.params;
     let studentIndex =-1;
 
-    STUDENTS.map((stud,index)=>{ // map used for find the index of student 
-        if(stud.Rollno == Rollno){ // this line of code use for find the index of student
+ STUDENTS.map((stud,index)=>{ // map used for find the index of student 
+        if(stud.Rollno == rollno){ // this line of code use for find the index of student
             studentIndex = index;
+            console.log(stud);
+            
         }
     })
     res.json({
@@ -68,7 +70,7 @@ app.get("/health", (req,res)=>{
         data: STUDENTS[studentIndex]
     })
  }
-
+ )
  //******************main code started ****************** */
 app.post("/students", (req,res)=>{
     const {Rollno,name,age} = req.body;
@@ -79,7 +81,7 @@ app.post("/students", (req,res)=>{
         })
     }
 
-    //check if student already exist we acutally store data in same student
+    
     const sameStudent = STUDENTS.find((stud)=>{
         if (stud.Rollno === Rollno) {
             return true;  
@@ -206,7 +208,7 @@ app.patch("/students/age/:Rollno", (req,res) =>{
     })
 })
 app.get ("*", (req ,res)=>{
-    res.json({
+    res.status(404).json({
         sucess :false,
         msg: "404 not found"
     })
