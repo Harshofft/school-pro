@@ -45,7 +45,7 @@ app.get("/health", (req,res)=>{
         msg : "server is sucessfully started"
     })
 });
- //************from all students data featched ************** */
+ //************from all students data featched ************** ****/
  app.get("/students", (req,res)=>{
     res.json({
         sucess : true,
