@@ -13,28 +13,28 @@ app.listen(PORT,()=>{
 const STUDENTS = [
     {
         Rollno : 1,
-        name : "Ashish",
-        age : 21
+        name : "Poha",
+        age : 15
     } ,
     {
         Rollno : 2,
-        name : "Raj",
-        age : 22
+        name : "Samosa",
+        age : 30
     },
     {
         Rollno : 3,
-        name : "Rohan",
-        age : 23
+        name : "Sambar wada",
+        age : 30
     } ,
     {
         Rollno : 4,
-        name : "Rohit",
-        age :22
+        name : "Dosa",
+        age :50
     },
     {
         Rollno : 5,
-        name : "Rajesh",
-        age : 21
+        name : "Rajma Chawal",
+        age : 50
     }
 ]
 //************from here health check up started ************** */
@@ -91,7 +91,7 @@ app.post("/students", (req,res)=>{
     if(sameStudent){
         return res.json({
             sucess : false,
-            msg : "student already exist"
+            msg : "food already exist"
         })
     }
     const newStudent = {
@@ -102,7 +102,7 @@ app.post("/students", (req,res)=>{
     STUDENTS.push(newStudent);
     res.status(201).json({
         sucess : true,
-        msg : "student added sucessfully",
+        msg : "food has succefully added",
         data :newStudent
     })
 })
@@ -119,14 +119,14 @@ app.delete("/students/:Rollno",(req,res)=>{
     if(studentIndex == -1){
         return res.json({
             sucess : false,
-            msg : "student not found"
+            msg : "food not found"
         });
     }
     
     STUDENTS.splice(studentIndex,1);
     res.json({
         sucess : true,
-        msg : "student deleted sucessfully"
+        msg : "food has del"
     })
 
 
@@ -164,7 +164,7 @@ app.put("/students/:Rollno", (req,res)=>{
     if(studentIndex == -1){
         return res.json({
             sucess : false,
-            msg : "student not found"
+            msg : "food not found"
         });
     }
     const student = {
@@ -175,7 +175,7 @@ app.put("/students/:Rollno", (req,res)=>{
     STUDENTS[studentIndex] = student;
     res.json({
         sucess : true,
-        msg : "student updated sucessfully",
+        msg : "food updated sucessfully",
         data : student
     });
 })
@@ -195,7 +195,7 @@ app.patch("/students/age/:Rollno", (req,res) =>{
     if(studentIndex == -1){
         return res.json({
         success : false,
-        msg : "student not found"
+        msg : "food not found"
         })
     }
     const student = STUDENTS[studentIndex];
@@ -203,7 +203,7 @@ app.patch("/students/age/:Rollno", (req,res) =>{
     STUDENTS[studentIndex] = student;
     res.json({
         sucess : true,
-        msg : "student updated sucessfully",
+        msg : "food updated sucessfully",
         data : student
     })
 })
